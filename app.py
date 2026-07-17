@@ -259,7 +259,7 @@ def import_transactions(df: pd.DataFrame, source_file: str) -> tuple[int, int]:
     skipped = len(rows) - inserted
 
     load_saved_transactions.clear()
-    
+
     return inserted, skipped
 
 
@@ -330,16 +330,25 @@ with st.sidebar:
         try:
             preview_df = load_ebay_csv(uploaded.getvalue())
             st.success(f"Found {len(preview_df):,} readable transactions.")
-            if st.button("Import transactions", type="primary", use_container_width=True):
-    with st.spinner("Saving transactions to Neon..."):
-        inserted, skipped = import_transactions(preview_df, uploaded.name)
 
-    st.success(
-        f"Imported {inserted:,} new transactions. "
-        f"Skipped {skipped:,} duplicates."
-    )
+            if st.button(
+                "Import transactions",
+                type="primary",
+                use_container_width=True,
+            ):
+                with st.spinner("Saving transactions to Neon..."):
+                    inserted, skipped = import_transactions(
+                        preview_df,
+                        uploaded.name,
+                    )
 
-    st.rerun()
+                st.success(
+                    f"Imported {inserted:,} new transactions. "
+                    f"Skipped {skipped:,} duplicates."
+                )
+
+                st.rerun()
+
         except Exception as exc:
             st.error(str(exc))
 
