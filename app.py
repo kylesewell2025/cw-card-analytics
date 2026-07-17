@@ -257,7 +257,9 @@ def import_transactions(df: pd.DataFrame, source_file: str) -> tuple[int, int]:
 
     inserted = int(after - before)
     skipped = len(rows) - inserted
-   load_saved_transactions.clear()
+
+    load_saved_transactions.clear()
+    
     return inserted, skipped
 
 
