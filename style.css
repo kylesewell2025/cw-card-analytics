@@ -218,34 +218,37 @@ div[data-testid="stMetric"]:hover {
         0 0 0 1px rgba(56, 189, 248, 0.05);
 }
 
-/* ---------- Metric Labels ---------- */
+/* ---------- Force metric text colors ---------- */
 
-label[data-testid="stMetricLabel"],
-label[data-testid="stMetricLabel"] p,
-label[data-testid="stMetricLabel"] div {
-    color: #D6E4F0 !important;
+div[data-testid="stMetric"] label[data-testid="stMetricLabel"],
+div[data-testid="stMetric"] label[data-testid="stMetricLabel"] *,
+div[data-testid="stMetric"] [data-testid="stMetricLabel"],
+div[data-testid="stMetric"] [data-testid="stMetricLabel"] * {
+    color: #e2e8f0 !important;
+    -webkit-text-fill-color: #e2e8f0 !important;
+    opacity: 1 !important;
     font-size: 0.88rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.02em !important;
-    opacity: 1 !important;
 }
 
-/* ---------- Metric Values ---------- */
-
-div[data-testid="stMetricValue"],
-div[data-testid="stMetricValue"] div {
-    color: #FFFFFF !important;
+div[data-testid="stMetric"] [data-testid="stMetricValue"],
+div[data-testid="stMetric"] [data-testid="stMetricValue"] * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
     font-size: clamp(1.45rem, 2.5vw, 2rem) !important;
     font-weight: 800 !important;
     letter-spacing: -0.03em !important;
     line-height: 1.1 !important;
 }
 
-/* ---------- Metric Delta ---------- */
-
-div[data-testid="stMetricDelta"] {
-    color: #94A3B8 !important;
-    font-size: 0.80rem !important;
+div[data-testid="stMetric"] [data-testid="stMetricDelta"],
+div[data-testid="stMetric"] [data-testid="stMetricDelta"] * {
+    color: #cbd5e1 !important;
+    -webkit-text-fill-color: #cbd5e1 !important;
+    opacity: 1 !important;
+    font-size: 0.8rem !important;
 }
 
 /* ---------- Plotly chart cards ---------- */
