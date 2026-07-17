@@ -186,7 +186,7 @@ h3 {
 
 div[data-testid="stMetric"] {
     min-height: 126px;
-    padding: 1rem 1.1rem;
+    padding: 1.25rem 1.2rem;
 
     background:
         linear-gradient(
@@ -218,21 +218,34 @@ div[data-testid="stMetric"]:hover {
         0 0 0 1px rgba(56, 189, 248, 0.05);
 }
 
-div[data-testid="stMetricLabel"] {
-    color: #94a3b8;
-    font-size: 0.78rem;
-    font-weight: 600;
+/* ---------- Metric Labels ---------- */
+
+label[data-testid="stMetricLabel"],
+label[data-testid="stMetricLabel"] p,
+label[data-testid="stMetricLabel"] div {
+    color: #D6E4F0 !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    opacity: 1 !important;
 }
 
-div[data-testid="stMetricValue"] {
-    color: #f8fafc;
-    font-size: clamp(1.35rem, 2.3vw, 1.9rem);
-    font-weight: 750;
-    letter-spacing: -0.035em;
+/* ---------- Metric Values ---------- */
+
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] div {
+    color: #FFFFFF !important;
+    font-size: clamp(1.45rem, 2.5vw, 2rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
 }
+
+/* ---------- Metric Delta ---------- */
 
 div[data-testid="stMetricDelta"] {
-    font-size: 0.78rem;
+    color: #94A3B8 !important;
+    font-size: 0.80rem !important;
 }
 
 /* ---------- Plotly chart cards ---------- */
@@ -243,11 +256,11 @@ div[data-testid="stPlotlyChart"] {
     padding: 0.45rem;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(15, 23, 42, 0.88),
-            rgba(19, 31, 51, 0.82)
-        );
+    linear-gradient(
+        145deg,
+        rgba(24, 34, 58, 0.98),
+        rgba(36, 52, 84, 0.94)
+    );
 
     border: 1px solid rgba(148, 163, 184, 0.13);
     border-radius: 19px;
