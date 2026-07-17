@@ -5,17 +5,39 @@ import csv
 import hashlib
 import json
 from io import StringIO
+from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 from sqlalchemy import text
 
+
 st.set_page_config(
     page_title="CW Card Company Analytics",
     page_icon="📊",
     layout="wide",
+    initial_sidebar_state="collapsed",
 )
+
+
+def load_css(file_name: str = "style.css") -> None:
+    css_path = Path(__file__).parent / file_name
+
+    if not css_path.exists():
+        st.warning(f"Stylesheet not found: {css_path.name}")
+        return
+
+    css = css_path.read_text(encoding="utf-8")
+
+    st.markdown(
+        f"<style>{css}</style>",
+        unsafe_allow_html=True,
+    )
+
+
+load_css()
+
 
 MONEY_COLUMNS = [
     "Net amount",
@@ -316,8 +338,20 @@ def money(value: float) -> str:
 
 initialize_database()
 
-st.title("CW Card Company Analytics")
-st.caption("Persistent browser-based eBay sales analytics")
+st.markdown(
+    """
+<div class="hero-card">
+<div>
+<div class="hero-kicker">CW CARD COMPANY</div>
+<h1>Sales Performance Dashboard</h1>
+<p>Track eBay revenue, transaction activity, monthly goals, and operating performance.</p>
+</div>
+<div class="hero-badge">LIVE DATA</div>
+</div>
+""",
+    unsafe_allow_html=True,
+)
+
 
 with st.sidebar:
     st.header("Import Data")
@@ -464,6 +498,15 @@ with left:
         labels={"Operating Net": "Net Sales", "Date": ""},
     )
     st.plotly_chart(figure, use_container_width=True)
+figure.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
+    margin=dict(l=10, r=10, t=20, b=10),
+    font=dict(color="#E2E8F0"),
+)
+
+
 
 with right:
     st.subheader("Running Progress vs Goal")
@@ -481,7 +524,13 @@ with right:
         markers=True,
     )
     st.plotly_chart(figure, use_container_width=True)
-
+figure.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
+    margin=dict(l=10, r=10, t=20, b=10),
+    font=dict(color="#E2E8F0"),
+)
 left, right = st.columns(2)
 
 with left:
@@ -506,7 +555,13 @@ with left:
         y="Amount",
     )
     st.plotly_chart(figure, use_container_width=True)
-
+figure.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
+    margin=dict(l=10, r=10, t=20, b=10),
+    font=dict(color="#E2E8F0"),
+)
 with right:
     st.subheader("Items Sold by Day")
     figure = px.bar(
@@ -515,7 +570,13 @@ with right:
         y="Items Sold",
     )
     st.plotly_chart(figure, use_container_width=True)
-
+figure.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
+    margin=dict(l=10, r=10, t=20, b=10),
+    font=dict(color="#E2E8F0"),
+)
 st.subheader("Daily Detail")
 st.dataframe(
     daily.rename(columns={"Operating Net": "Net Sales"}),
